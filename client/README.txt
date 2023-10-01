@@ -1,3 +1,3 @@
 Librerías a instalar:
 
-npm install @mui/material @mui/icons-material react-copy-to-clipboard
+npm install @mui/material @mui/icons-material @mui/system @emotion/react @emotion/styled react-copy-to-clipboard
