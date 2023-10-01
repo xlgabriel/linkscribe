@@ -35,7 +35,7 @@ export default function SignInSide() {
                         sm={4}
                         md={7}
                         sx={{
-                            backgroundImage: "url(https://source.unsplash.com/random)",
+                            backgroundImage: "url(https://i.imgur.com/iPauj1H.png)",
                             backgroundRepeat: "no-repeat",
                             backgroundColor: (t) =>
                                 t.palette.mode === "light"
@@ -53,6 +53,15 @@ export default function SignInSide() {
                         component={Paper}
                         elevation={6}
                         square
+                        sx={{
+                            backgroundColor: (theme) =>
+                                theme.palette.mode === "light"
+                                    ? theme.palette.grey[50]
+                                    : theme.palette.grey[900], // Color de fondo del Paper
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                        }}
                     >
                         <Box
                             sx={{
@@ -64,7 +73,7 @@ export default function SignInSide() {
                             }}
                         >
                             <Typography component="h1" variant="h5">
-                                Sign in
+                                Welcome back
                             </Typography>
                             <Box
                                 component="form"
@@ -81,6 +90,14 @@ export default function SignInSide() {
                                     name="email"
                                     autoComplete="email"
                                     autoFocus
+                                    sx={{
+                                        "& label.Mui-focused": {
+                                            color: "#5800FF",
+                                        },
+                                        "& .MuiInput-underline:after": {
+                                            borderBottomColor: "#5800FF",
+                                        },
+                                    }}
                                 />
                                 <TextField
                                     margin="normal"
@@ -91,6 +108,14 @@ export default function SignInSide() {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    sx={{
+                                        "& label.Mui-focused": {
+                                            color: "#5800FF",
+                                        },
+                                        "& .MuiInput-underline:after": {
+                                            borderBottomColor: "#5800FF",
+                                        },
+                                    }}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox value="remember" color="primary" />}
@@ -100,18 +125,34 @@ export default function SignInSide() {
                                     type="submit"
                                     fullWidth
                                     variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
+                                    sx={{
+                                        mt: 3,
+                                        mb: 2,
+                                        backgroundColor: "#5800FF", // Cambia el color de fondo del botón
+                                    }}
                                 >
                                     Sign In
                                 </Button>
                                 <Grid container>
                                     <Grid item xs>
-                                        <Link href="#" variant="body2">
+                                        <Link
+                                            href="#"
+                                            variant="body2"
+                                            sx={{
+                                                color: "#5800FF", // Cambia el color del hipervínculo
+                                            }}
+                                        >
                                             Forgot password?
                                         </Link>
                                     </Grid>
                                     <Grid item>
-                                        <Link href="#" variant="body2">
+                                        <Link
+                                            href="#"
+                                            variant="body2"
+                                            sx={{
+                                                color: "#5800FF", // Cambia el color del hipervínculo
+                                            }}
+                                        >
                                             {"Don't have an account? Sign Up"}
                                         </Link>
                                     </Grid>
