@@ -1,3 +1,7 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import app from './firebase';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -9,15 +13,31 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 export default function SignInSide() {
-    const handleSubmit = (event) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const [openAlert, setOpenAlert] = React.useState(false);
+
+    const handleOpenAlert = () => {
+        setOpenAlert(true);
+    };
+
+    const handleSignIn = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
+
+        try {
+            const auth = getAuth();
+            await signInWithEmailAndPassword(auth, email, password);
+            // Si el inicio de sesión tiene éxito, navega al usuario a la página de inicio
+            navigate('/home');
+        } catch (error) {
+            handleOpenAlert();
+            console.error(error);
+        }
     };
 
     return (
@@ -57,7 +77,7 @@ export default function SignInSide() {
                             backgroundColor: (theme) =>
                                 theme.palette.mode === "light"
                                     ? theme.palette.grey[50]
-                                    : theme.palette.grey[900], // Color de fondo del Paper
+                                    : theme.palette.grey[900],
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
@@ -78,7 +98,7 @@ export default function SignInSide() {
                             <Box
                                 component="form"
                                 noValidate
-                                onSubmit={handleSubmit}
+                                onSubmit={handleSignIn} // Llama a la función de inicio de sesión en lugar de handleSubmit
                                 sx={{ mt: 1 }}
                             >
                                 <TextField
@@ -90,6 +110,8 @@ export default function SignInSide() {
                                     name="email"
                                     autoComplete="email"
                                     autoFocus
+                                    value={email} // Asigna el valor del estado email
+                                    onChange={(e) => setEmail(e.target.value)} // Actualiza el estado email al cambiar el campo
                                     sx={{
                                         "& label.Mui-focused": {
                                             color: "#5800FF",
@@ -108,6 +130,8 @@ export default function SignInSide() {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    value={password} // Asigna el valor del estado password
+                                    onChange={(e) => setPassword(e.target.value)} // Actualiza el estado password al cambiar el campo
                                     sx={{
                                         "& label.Mui-focused": {
                                             color: "#5800FF",
@@ -128,18 +152,28 @@ export default function SignInSide() {
                                     sx={{
                                         mt: 3,
                                         mb: 2,
-                                        backgroundColor: "#5800FF", // Cambia el color de fondo del botón
+                                        backgroundColor: "#5800FF",
                                     }}
                                 >
                                     Sign In
                                 </Button>
+                                <Snackbar open={openAlert} autoHideDuration={6000} onClose={() => setOpenAlert(false)}>
+                                    <MuiAlert
+                                        elevation={6}
+                                        variant="filled"
+                                        severity="error"
+                                        onClose={() => setOpenAlert(false)}
+                                    >
+                                        Login failed. Please review the information provided.
+                                    </MuiAlert>
+                                </Snackbar>
                                 <Grid container>
                                     <Grid item xs>
                                         <Link
                                             href="#"
                                             variant="body2"
                                             sx={{
-                                                color: "#5800FF", // Cambia el color del hipervínculo
+                                                color: "#5800FF",
                                             }}
                                         >
                                             Forgot password?
@@ -147,10 +181,10 @@ export default function SignInSide() {
                                     </Grid>
                                     <Grid item>
                                         <Link
-                                            href="#"
+                                            href="/signup"
                                             variant="body2"
                                             sx={{
-                                                color: "#5800FF", // Cambia el color del hipervínculo
+                                                color: "#5800FF",
                                             }}
                                         >
                                             {"Don't have an account? Sign Up"}
