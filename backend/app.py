@@ -113,7 +113,7 @@ def link():
 
     print(f"La palabra con mayor frecuencia es {palabra_con_maximo_conteo} con un {conteo_maximo} repeticiones")
 
-    return palabra_con_maximo_conteo
+    return jsonify(palabra_con_maximo_conteo)
 
 
 
