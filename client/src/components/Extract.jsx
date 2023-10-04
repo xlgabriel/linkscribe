@@ -24,7 +24,7 @@ function Extract() {
 
     // Esta función simula la llamada a la API para obtener los datos
     const extractDataFromAPI = async () => {
-        const apiUrl = 'http://192.168.80.15:5000/link';
+        const apiUrl = 'http://127.0.0.1:5000/link';
         const response = await fetch(apiUrl, {
             method: 'POST',
             body: JSON.stringify({ url: inputValue }),
@@ -35,9 +35,11 @@ function Extract() {
 
         if (response.ok) {
             const data = await response.json();
-            setExtractedData(data); // Almacena los datos en el estado
+            console.log(data);
+            setExtractedData(data);
         } else {
             console.error('Error al obtener datos de la API');
+            console.log(data);
         }
     };
 
@@ -88,18 +90,11 @@ function Extract() {
             {extractedData && (
                 <Paper elevation={3} style={{ marginTop: '24px', padding: '16px' }}>
                     <Typography variant="h4" gutterBottom>
-                        Extracted Data
+                        Category
                     </Typography>
                     <Card sx={{ display: 'flex', alignItems: 'center', marginTop: '16px' }}>
-                        <CardMedia
-                            component="img"
-                            alt="Extracted Image"
-                            height="100"
-                            src={extractedData.imageUrl}
-                        />
                         <CardContent>
-                            <Typography variant="h6">{extractedData.title}</Typography>
-                            <Typography variant="body2">{extractedData.description}</Typography>
+                            <Typography variant="h6" style={{ textAlign: 'center' }}> {extractedData} </Typography>
                         </CardContent>
                     </Card>
                 </Paper>
