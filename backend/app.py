@@ -8,7 +8,18 @@ from sklearn.metrics import classification_report, log_loss
 
 import requests
 from bs4 import BeautifulSoup
+
+
+#Para usar fronted
+from flask_cors import CORS
+#------------------------------
+
 app = Flask(__name__)
+
+#Para usar fronted
+CORS(app)
+#---------
+
 
 
 @app.route('/link', methods=['POST'])
@@ -85,7 +96,7 @@ def link():
         porcentaje_prediccion = porcentajes_prediccion[i]
         clases_predichas_array.append(clase_predicha)
         #print(f"Predicción para el texto {i + 1}: {clase_predicha} con un {porcentaje_prediccion:.2f}% de probabilidad")
-    print(clases_predichas_array)
+    #print(clases_predichas_array)
 
     conteo_repeticiones = {}
 
