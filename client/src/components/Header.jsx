@@ -18,12 +18,30 @@ function Header() {
         setAnchorEl(null);
     };
 
+    const handleAboutUsClick = () => {
+        // Lógica para redirigir a la página "About Us"
+        // Puedes usar window.location.href para recargar la página actual.
+    };
+
+    const handlePricingClick = () => {
+        // Lógica para redirigir a la página "Pricing"
+        // Puedes usar window.location.href para recargar la página actual.
+    };
+
     return (
         <AppBar position="static" style={{ backgroundColor: '#FFFFFF' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: 1 }}>
                     Welcome, user
                 </Typography>
+                <button onClick={handleAboutUsClick} style={{ fontWeight: 'bold', color: '#1976d2', marginRight: '42px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer' }}>
+                    About us
+                </button>
+
+                <button onClick={handlePricingClick} style={{ fontWeight: 'bold', color: '#1976d2', marginRight: '42px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer' }}>
+                    Pricing
+                </button>
+
                 <IconButton
                     edge="end"
                     aria-label="account of current user"

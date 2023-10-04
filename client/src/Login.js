@@ -32,8 +32,7 @@ export default function SignInSide() {
         try {
             const auth = getAuth();
             await signInWithEmailAndPassword(auth, email, password);
-            // Si el inicio de sesión tiene éxito, navega al usuario a la página de inicio
-            navigate('/home');
+            navigate('/home/extract');
         } catch (error) {
             handleOpenAlert();
             console.error(error);
