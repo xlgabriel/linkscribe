@@ -35,15 +35,14 @@ function SideBar() {
                     backgroundImage: `url(${sidebarBg})`,
                     backgroundSize: 'cover',
                     display: 'flex',
-                    flexDirection: 'column', // Cambio de dirección de la lista a columna
-                    justifyContent: 'space-between', // Espacio entre elementos
-                    height: '100%', // Ocupa todo el espacio vertical
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    height: '100%',
                 },
             }}
         >
             <List>
                 <ListItem>
-                    {/* Utiliza el componente Link para redirigir a /home/extract */}
                     <Link to="/home/extract" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <IconButton>
                             <img
@@ -72,7 +71,6 @@ function SideBar() {
                     <ListItemText primary="User settings" primaryTypographyProps={{ style: { fontWeight: 'bold' }, sx: { flexGrow: 1 } }} />
                 </ListItemButton>
             </List>
-            {/* Botón "Log out" al final */}
             <List>
                 <ListItemButton component={Link} to="/login" sx={{ "&:hover": { backgroundColor: 'rgba(255, 255, 255, 0.1)' } }}>
                     <ExitToAppIcon style={{ marginRight: '8px', flexShrink: 0 }} />
