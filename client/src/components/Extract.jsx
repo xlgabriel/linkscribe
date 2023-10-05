@@ -35,11 +35,11 @@ function Extract() {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
+           
             setExtractedData(data);
         } else {
             console.error('Error al obtener datos de la API');
-            console.log(data);
+            
         }
     };
 
