@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/User/Desktop/lisnscr/linkscribe/Mlflow/mlruns/0/b2523e1bb02a4bb29c482f2422274818/artifacts
+end_time: 1696649830872
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b2523e1bb02a4bb29c482f2422274818
+run_name: chill-fly-695
+run_uuid: b2523e1bb02a4bb29c482f2422274818
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1696649829472
+status: 3
+tags: []
+user_id: User

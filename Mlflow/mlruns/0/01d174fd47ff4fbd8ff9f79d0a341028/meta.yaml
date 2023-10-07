@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/User/Desktop/lisnscr/linkscribe/Mlflow/mlruns/0/01d174fd47ff4fbd8ff9f79d0a341028/artifacts
+end_time: 1696649695664
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 01d174fd47ff4fbd8ff9f79d0a341028
+run_name: amazing-toad-576
+run_uuid: 01d174fd47ff4fbd8ff9f79d0a341028
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1696649694411
+status: 3
+tags: []
+user_id: User
