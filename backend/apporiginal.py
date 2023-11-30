@@ -1,27 +1,30 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
+
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import log_loss
+from sklearn.metrics import classification_report, log_loss
+
 import requests
 from bs4 import BeautifulSoup
-import mlflow
-import mlflow.sklearn
 
-# Para usar fronted
+
+#Para usar fronted
 from flask_cors import CORS
+#------------------------------
 
 app = Flask(__name__)
 
-# Para usar fronted
+#Para usar fronted
 CORS(app)
+#---------
 
-# Inicializar MLflow
-mlflow.start_run()
+
 
 @app.route('/link', methods=['POST'])
 def link():
+      
     # Cargar el conjunto de datos desde el archivo CSV
     data = pd.read_csv('dataset.csv')
 
@@ -41,15 +44,16 @@ def link():
 
     stop_words_espanol = ["de", "la", "el", "en", "y", "a", "que", "es", "un", "una", "con", "por", "para", "lo", "como", "más", "su", "al"]
     # Preprocesar el texto con TF-IDF
-    vectorizer = TfidfVectorizer(stop_words=stop_words_espanol, max_features=1000)
+    vectorizer = TfidfVectorizer(stop_words= stop_words_espanol , max_features=1000)
     X_tfidf = vectorizer.fit_transform(textos)
 
     # Crear un clasificador Naive Bayes
     clf = MultinomialNB()
     clf.fit(X_tfidf, etiquetas_individuales)
-
+    #------------------------------------------
     # Texto de prueba (usaremos una lista de textos)
-    url = request.json['url']
+
+    url=request.json['url']
     # URL de la página web que deseas analizar
     url = url
 
@@ -67,8 +71,11 @@ def link():
         # Extrae el texto de los elementos <p> y <h1>
         textos_prueba = [element.get_text() for element in text_elements]
 
+        # Imprime el array de texto
+        #print(texto)
     else:
-        print(f'Error al acceder a la página. Código de estado: {response.status_code}')
+        print(f'Error al acceder a la página. Código de estado: {response.status_code}') 
+
 
     # Preprocesar los textos de prueba con TF-IDF
     X_tfidf_prueba = vectorizer.transform(textos_prueba)
@@ -88,6 +95,8 @@ def link():
         clase_predicha = clases_predichas[i]
         porcentaje_prediccion = porcentajes_prediccion[i]
         clases_predichas_array.append(clase_predicha)
+        #print(f"Predicción para el texto {i + 1}: {clase_predicha} con un {porcentaje_prediccion:.2f}% de probabilidad")
+    #print(clases_predichas_array)
 
     conteo_repeticiones = {}
 
@@ -104,13 +113,29 @@ def link():
 
     print(f"La palabra con mayor frecuencia es {palabra_con_maximo_conteo} con un {conteo_maximo} repeticiones")
 
-    # Registrar la métrica log_loss en MLflow
-    log_loss_value = log_loss(etiquetas_individuales, y_pred_prob)
-    mlflow.log_metric("log_loss", log_loss_value)
-
     return jsonify(palabra_con_maximo_conteo)
 
+
+
+
+
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
-    # Cerrar el run de MLflow al final de la ejecución
-    mlflow.end_run()
+    app.run(debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

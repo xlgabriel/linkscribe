@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "mlflow": "^2.0.7"
+  }
+}

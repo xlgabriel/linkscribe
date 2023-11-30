@@ -24,7 +24,7 @@ function Extract() {
 
     // Esta función simula la llamada a la API para obtener los datos
     const extractDataFromAPI = async () => {
-        const apiUrl = 'http://127.0.0.1:5000/link';
+        const apiUrl = 'http://127.0.0.1:5001/link';
         const response = await fetch(apiUrl, {
             method: 'POST',
             body: JSON.stringify({ url: inputValue }),
@@ -35,11 +35,11 @@ function Extract() {
 
         if (response.ok) {
             const data = await response.json();
-           
+
             setExtractedData(data);
         } else {
             console.error('Error al obtener datos de la API');
-            
+
         }
     };
 
