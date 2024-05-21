@@ -74,7 +74,7 @@ Effortlessly create, organize, and categorize web links using NLP (Natural Langu
 
 ## 📊 Dataset
 
-- The dataset used for training the NLP model can be found [here](dataset.csv).
+- The dataset used for training the NLP model can be found [here](https://github.com/xlgabriel/linkscribe/blob/main/Mlflow/datasetmore.csv).
 
 ## 🤝 Contributing
 
